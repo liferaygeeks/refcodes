@@ -1,1 +1,1 @@
-# Code base for liferay plugins dedelkjdlekjdl
+# Code base for liferay plugins.
