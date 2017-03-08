@@ -1,1 +1,1 @@
-# Code base for liferay plugins 
+# Code base for liferay plugins.
