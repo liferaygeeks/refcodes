@@ -5,8 +5,10 @@
         <groupId>com.refcodes</groupId>
 	      <artifactId>geeksksa</artifactId>
 	      <version>1.0</version>
+	      <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>layouts</artifactId>
+     <modelVersion>4.0.0</modelVersion>
+     <artifactId>layouts</artifactId>
     <packaging>pom</packaging>
 
     <name>Liferay layouts plugins </name>
