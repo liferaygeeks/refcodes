@@ -7,14 +7,17 @@
 	<packaging>pom</packaging>
 	<name>GeeksKsa</name>
 	<description>Codes Repo for liferay geeks</description>
-	
+		<properties>
+		<liferay.maven.plugin.version>6.2.5</liferay.maven.plugin.version>
+		<liferay.version>6.2.1</liferay.version>
+		</properties>
     <build>
 		<plugins>
 			<plugin>
 				<groupId>com.liferay.maven.plugins</groupId>
 				<artifactId>liferay-maven-plugin</artifactId>
-				<version>6.2.5</version>
-				<configuration>
+				<version>${liferay.maven.plugin.version}</version>
+				<!-- <configuration>
 					<autoDeployDir>${liferay.auto.deploy.dir}</autoDeployDir>
 					<appServerDeployDir>${liferay.app.server.deploy.dir}</appServerDeployDir>
 					<appServerLibGlobalDir>${liferay.app.server.lib.global.dir}</appServerLibGlobalDir>
@@ -22,7 +25,7 @@
 					<liferayVersion>${liferay.version}</liferayVersion>
 					<pluginName>protoype-portlet</pluginName>
 					<pluginType>portlet</pluginType>
-				</configuration>
+				</configuration> -->
 			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
