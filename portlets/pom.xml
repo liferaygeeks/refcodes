@@ -9,11 +9,10 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>portlets</artifactId>
     <packaging>pom</packaging>
-
-    <name>Parent Project for liferay portlet plugins </name>
+ 	<name>Parent Project for liferay portlet plugins </name>
 
      <modules>
-       	<!--		<module>portlet-name</module> -->
+       			<module>prototype</module> 
        		
    	 </modules>
 </project>
