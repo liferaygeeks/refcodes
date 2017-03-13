@@ -3,16 +3,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<parent>
         <groupId>com.refcodes</groupId>
-	      <artifactId>portlets</artifactId>
+	      <artifactId>themes</artifactId>
 	      <version>1.0</version>
 	    <relativePath>../pom.xml</relativePath>
     </parent>
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.refcode</groupId>
+	<groupId>com.refcode.theme</groupId>
 	<artifactId>Landing-theme</artifactId>
 	<packaging>war</packaging>
 	<name>Landing-theme Theme</name>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<build>
 		<plugins>
 			<plugin>
@@ -29,11 +29,11 @@
 						</goals>
 					</execution>
 				</executions>
-				<configuration>
-					<autoDeployDir>${liferay.auto.deploy.dir}</autoDeployDir>
+				 <configuration>
+					<!-- <autoDeployDir>${liferay.auto.deploy.dir}</autoDeployDir>
 					<appServerDeployDir>${liferay.app.server.deploy.dir}</appServerDeployDir>
 					<appServerLibGlobalDir>${liferay.app.server.lib.global.dir}</appServerLibGlobalDir>
-					<appServerPortalDir>${liferay.app.server.portal.dir}</appServerPortalDir>
+					<appServerPortalDir>${liferay.app.server.portal.dir}</appServerPortalDir> -->
 					<liferayVersion>${liferay.version}</liferayVersion>
 					<parentTheme>${liferay.theme.parent}</parentTheme>
 					<pluginType>theme</pluginType>

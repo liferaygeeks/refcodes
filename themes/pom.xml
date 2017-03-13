@@ -6,14 +6,15 @@
 	      <version>1.0</version>
 	    <relativePath>../pom.xml</relativePath>
     </parent>
+    <groupId>com.refcodes</groupId>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>themes</artifactId>
-    <packaging>pom</packaging>
+   <packaging>pom</packaging>
 
     <name>Liferay theme plugins </name>
 
      <modules>
-       	<!--		<module>theme-name</module> -->
+       			<module>Landing-theme</module> 
        		
    	 </modules>
 </project>
