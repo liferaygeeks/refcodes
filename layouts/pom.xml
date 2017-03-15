@@ -17,4 +17,5 @@
        	<!--		<module>layout-name</module> -->
        		
    	 </modules>
+     <groupId>com.refcodes.layouts</groupId>
 </project>

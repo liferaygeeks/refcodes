@@ -16,4 +16,5 @@
        	<!--		<module>hooks-name</module> -->
        		
    	 </modules>
+     <groupId>com.refcodes.hooks</groupId>
 </project>

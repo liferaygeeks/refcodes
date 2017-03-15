@@ -16,4 +16,5 @@
        	<!--		<module>ext-name</module> -->
        		
    	 </modules>
+     <groupId>com.refcodes.ext</groupId>
 </project>

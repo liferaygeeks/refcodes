@@ -16,4 +16,5 @@
        	<!--		<module>portlet-name</module> -->
        		
    	 </modules>
+     <groupId>com.refcodes.services</groupId>
 </project>
