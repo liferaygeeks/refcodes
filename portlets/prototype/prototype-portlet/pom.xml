@@ -2,17 +2,16 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<parent>
-		<groupId>com.refcodes.sample</groupId>
+		<groupId>com.refcodes.portlets.prototype</groupId>
 		<artifactId>prototype</artifactId>
 		 <version>1.0</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.refcodes.sample</groupId>
+	<groupId>com.refcodes.portlets.prototype.prototypeportlet</groupId>
 	<artifactId>prototype-portlet</artifactId>
 	<packaging>war</packaging>
 	<name>prototype Portlet</name>
-	 <version>1.0</version> 
 	<build>
 		<plugins>
 			<plugin>
@@ -35,7 +34,7 @@
 	</build>
 	<dependencies>
 		<dependency>
-			<groupId>com.refcodes.sample</groupId>
+			<groupId>com.refcodes.portlets.prototype.portletservice</groupId>
 			<artifactId>prototype-portlet-service</artifactId>
 			<version>${project.version}</version>
 		</dependency>

@@ -7,6 +7,7 @@
 	    <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <groupId>com.refcodes.portlets</groupId>
     <artifactId>portlets</artifactId>
     <packaging>pom</packaging>
  	<name>Parent Project for liferay portlet plugins </name>
