@@ -11,9 +11,9 @@
 	<groupId>com.refcodes.portlets.prototype.portletservice</groupId>
 	<artifactId>prototype-portlet-service</artifactId>
 	<packaging>jar</packaging>
+	 
 	<name>prototype Portlet Service</name>
-	 <version>1.0</version> 
-	<build>
+	 <build>
 		<plugins>
 			<plugin>
 				 <groupId>com.liferay.maven.plugins</groupId>

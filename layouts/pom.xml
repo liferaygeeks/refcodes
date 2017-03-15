@@ -8,6 +8,7 @@
 	      <relativePath>../pom.xml</relativePath>
     </parent>
      <modelVersion>4.0.0</modelVersion>
+     <groupId>com.refcodes.layouts</groupId>
      <artifactId>layouts</artifactId>
     <packaging>pom</packaging>
 
@@ -17,5 +18,5 @@
        	<!--		<module>layout-name</module> -->
        		
    	 </modules>
-     <groupId>com.refcodes.layouts</groupId>
+     
 </project>

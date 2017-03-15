@@ -12,7 +12,6 @@
 	<artifactId>prototype-portlet</artifactId>
 	<packaging>war</packaging>
 	<name>prototype Portlet</name>
-	 <version>1.0</version> 
 	<build>
 		<plugins>
 			<plugin>
@@ -35,7 +34,7 @@
 	</build>
 	<dependencies>
 		<dependency>
-			<groupId>com.refcodes.sample</groupId>
+			<groupId>com.refcodes.portlets.prototype.portletservice</groupId>
 			<artifactId>prototype-portlet-service</artifactId>
 			<version>${project.version}</version>
 		</dependency>

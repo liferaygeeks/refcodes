@@ -8,11 +8,10 @@
 	    <relativePath>../pom.xml</relativePath>
     </parent>
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.refcode.themes.landingtheme</groupId>
+	<groupId>com.refcodes.themes.landingtheme</groupId>
 	<artifactId>Landing-theme</artifactId>
 	<packaging>war</packaging>
 	<name>Landing-theme Theme</name>
-	<version>1.0</version>
 	<build>
 		<plugins>
 			<plugin>
