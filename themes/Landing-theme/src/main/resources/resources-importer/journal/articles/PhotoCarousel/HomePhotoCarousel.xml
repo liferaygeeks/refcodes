@@ -7,10 +7,10 @@
 
 	<dynamic-element instance-id="qYyn3lcL" name="carousel-item" type="text" index-type="">
 		<dynamic-element instance-id="SJwKZiO2" name="tagline" type="text" index-type="">
-			<dynamic-content><![CDATA[Fugiat harum nulla voluptatem]]></dynamic-content>
+			<dynamic-content><![CDATA[We will market your product or service]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-element instance-id="UfdsweoF" name="paragraph" type="text" index-type="">
-			<dynamic-content><![CDATA[Id expedita explicabo dignissimos ut delectus reiciendis exce]]></dynamic-content>
+			<dynamic-content><![CDATA[Simple two step registration and post what you offer]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-element instance-id="NKshI0fa" name="image" type="document_library" index-type="">
 			<dynamic-content><![CDATA[[$FILE=slide_01.jpg$]]]></dynamic-content>
@@ -18,7 +18,7 @@
 		<dynamic-element instance-id="CaKRiz5o" name="url-location" type="link_to_layout" index-type="">
 			<dynamic-content><![CDATA[#testimonials]]></dynamic-content>
 		</dynamic-element>
-		<dynamic-content><![CDATA[Consequatur]]></dynamic-content>
+		<dynamic-content><![CDATA[Register your Business]]></dynamic-content>
 	</dynamic-element>
 
 	<dynamic-element instance-id="grOgO2rI" name="carousel-item" type="text" index-type="">
