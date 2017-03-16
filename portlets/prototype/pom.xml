@@ -12,6 +12,20 @@
 	<artifactId>prototype</artifactId>
 	<packaging>pom</packaging>
 	<name>prototype</name>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.liferay.maven.plugins</groupId>
+				<artifactId>liferay-maven-plugin</artifactId>
+				<version>${liferay.maven.plugin.version}</version>
+				<configuration>
+					<liferayVersion>${liferay.version}</liferayVersion>
+					<pluginName>prototype-portlet</pluginName>
+					<pluginType>portlet</pluginType>
+				</configuration>
+			</plugin>
+			</plugins>
+			</build>
 	<modules>
 		<module>prototype-portlet</module>
 		<module>prototype-portlet-service</module>

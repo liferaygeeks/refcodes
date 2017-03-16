@@ -1,3 +1,20 @@
 #*
 This file allows you to override and define new Velocity variables.
 *#
+#set ($create_account_url = $portletURLFactory.create($request, "58", $page.getPlid(), "ACTION_PHASE"))
+$create_account_url.setWindowState("maximized")
+$create_account_url.setPortletMode("view")
+$create_account_url.setParameter("saveLastPath", "0")
+$create_account_url.setParameter("struts_action", "/login/create_account")
+
+
+
+  <script type="text/javascript">
+ 	 var createAccounturl = '$create_account_url';
+ 		
+        function redirectToCreateAccount(){
+       
+        window.location.href = createAccounturl;
+       }
+       
+       </script>
