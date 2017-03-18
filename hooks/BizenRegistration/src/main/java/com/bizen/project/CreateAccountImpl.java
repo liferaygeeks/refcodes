@@ -53,11 +53,13 @@ public class CreateAccountImpl implements StrutsPortletAction {
 		businessUser.setFirstName(firstName);
 		businessUser.setLastName(lastName);
 		businessUser.setEmail(emailAddress);
-		businessUser.setOwnerShip("");
+		businessUser.setOwnerShip(ownerShip);
 		businessUser.setCategoryId(0);
 		businessUser.setCreatedDate(new Date());
 		businessUser.setCreatedBy(user.getUserId());
 		BusinessUserLocalServiceUtil.addBusinessUser(businessUser);
+		
+		originalStrutsPortletAction.processAction(originalStrutsPortletAction, portletConfig, actionRequest, actionResponse);
 		
 	}
 
