@@ -47,10 +47,11 @@
 	</build>
 	 <modules>
        			<module>services</module>
+       			<module>portlets</module>
        			<module>hooks</module>
 		 	<module>themes</module>
 			<module>layouts</module>
-			<module>portlets</module>
+			
 			<module>ext</module>
    	 </modules>
 

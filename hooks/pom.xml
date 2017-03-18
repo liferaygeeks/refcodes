@@ -14,7 +14,7 @@
     <name>Parent project for liferay hook plugins </name>
  
      <modules>
-       	<!--		<module>hooks-name</module> -->
+       			<module>BizenRegistration</module> 
        		
    	 </modules>
     
