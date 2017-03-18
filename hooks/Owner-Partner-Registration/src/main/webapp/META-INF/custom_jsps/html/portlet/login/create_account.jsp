@@ -14,9 +14,21 @@
  */
 --%>
 
+<%@page import="com.liferay.portal.kernel.util.Validator"%>
+<%@page import="com.liferay.portal.kernel.util.PortalClassLoaderUtil"%>
+<%@page import="com.liferay.portlet.asset.model.AssetVocabulary"%>
+<%@page import="com.liferay.portlet.asset.model.AssetCategory"%>
+<%@page import="com.liferay.portlet.asset.service.*"%>
+<%@page import="com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil"%>
+<%@page import="java.util.List"%>
+<%@page import="com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil"%>
+<%@page import="com.liferay.portal.kernel.dao.orm.DynamicQuery"%>
+<%@page import="com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil"%>
 <%@ include file="/html/portlet/login/init.jsp" %>
 
 <%
+List<AssetCategory>	assetCategories=null;
+List<AssetVocabulary> assetVocabulary=null;
 String redirect = ParamUtil.getString(request, "redirect");
 
 String openId = ParamUtil.getString(request, "openId");
@@ -27,6 +39,17 @@ Calendar birthdayCalendar = CalendarFactoryUtil.getCalendar();
 birthdayCalendar.set(Calendar.MONTH, Calendar.JANUARY);
 birthdayCalendar.set(Calendar.DATE, 1);
 birthdayCalendar.set(Calendar.YEAR, 1970);
+
+DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(AssetVocabulary.class, PortalClassLoaderUtil.getClassLoader());
+dynamicQuery.add(PropertyFactoryUtil.forName("name").eq("Bizen Categories"));
+assetVocabulary = AssetCategoryLocalServiceUtil.dynamicQuery(dynamicQuery);
+if(Validator.isNotNull(assetVocabulary))
+{
+for(AssetVocabulary vocabulary : assetVocabulary){
+	
+assetCategories=AssetCategoryLocalServiceUtil.getVocabularyCategories(vocabulary.getVocabularyId(), -1, -1, null);
+}
+}
 %>
 
 <portlet:actionURL secure="<%= PropsValues.COMPANY_SECURITY_AUTH_REQUIRES_HTTPS || request.isSecure() %>" var="createAccountURL">
@@ -55,7 +78,7 @@ birthdayCalendar.set(Calendar.YEAR, 1970);
 	<liferay-ui:error exception="<%= EmailAddressException.class %>" message="please-enter-a-valid-email-address" />
 
 	<liferay-ui:error exception="<%= GroupFriendlyURLException.class %>">
-
+<script src="/ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
 		<%
 		GroupFriendlyURLException gfurle = (GroupFriendlyURLException)errorException;
 		%>
@@ -117,32 +140,25 @@ birthdayCalendar.set(Calendar.YEAR, 1970);
 			<liferay-ui:message key="you-have-successfully-authenticated-please-provide-the-following-required-information-to-access-the-portal" />
 		</div>
 	</c:if>
-<h1>Hellooooooooooooooooooooooooooooooooo</h1>
+
 	<aui:model-context model="<%= Contact.class %>" />
 
-	 <aui:fieldset column="<%= true %>"> 
-		 <aui:col width="<%= 100 %>"> 
+	<aui:fieldset column="<%= true %>">
+		<aui:col width="<%= 50 %>">
 			<%@ include file="/html/portlet/login/create_account_user_name.jspf" %>
 
-			<%-- <c:if test="<%= !PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.USERS_SCREEN_NAME_ALWAYS_AUTOGENERATE) %>">
+			<c:if test="<%= !PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.USERS_SCREEN_NAME_ALWAYS_AUTOGENERATE) %>">
 				<aui:input model="<%= User.class %>" name="screenName" />
 			</c:if>
-             --%>
-			<aui:input autoFocus="<%= true %>" model="<%= User.class %>" name="emailAddress">
+
+			<aui:input model="<%= User.class %>" name="emailAddress" >
 				<c:if test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.USERS_EMAIL_ADDRESS_REQUIRED) %>">
 					<aui:validator name="required" />
 				</c:if>
 			</aui:input>
-			
-			   <aui:select label="Category" name="category">
-					<aui:option label="Select" value="1" />
-				</aui:select>
-				<aui:input name="companyid" type="type" value="value" lable="Company-Id">
-				<aui:input name="phoneno" type="phone" value="value" lable="Phone-No">
-			
-		 </aui:col> 
+		</aui:col>
 
-		 <aui:col width="<%= 50 %>"> 
+		<aui:col width="<%= 50 %>">
 			<c:if test="<%= PropsValues.LOGIN_CREATE_ACCOUNT_ALLOW_CUSTOM_PASSWORD %>">
 				<aui:input label="password" name="password1" size="30" type="password" value="" />
 
@@ -152,7 +168,23 @@ birthdayCalendar.set(Calendar.YEAR, 1970);
 					</aui:validator>
 				</aui:input>
 			</c:if>
-
+		
+			<!--################# coustom Filed ############# -->
+			   <aui:select label="category" name="category">
+					<aui:option label="Select" value="" />
+						 <%
+						 if(Validator.isNotNull(assetCategories))
+						 {
+					for(AssetCategory category: assetCategories){
+						%>
+						<aui:option lable="<%= category.getName()%>" value="<%= category.getName()%>" />
+					     <% 
+					     }
+						 }
+					%> 
+				</aui:select>
+		
+		<!--################# coustom Filed ############# -->
 			<c:choose>
 				<c:when test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.FIELD_ENABLE_COM_LIFERAY_PORTAL_MODEL_CONTACT_BIRTHDAY) %>">
 					<aui:input name="birthday" value="<%= birthdayCalendar %>" />
@@ -178,12 +210,34 @@ birthdayCalendar.set(Calendar.YEAR, 1970);
 
 				<liferay-ui:captcha url="<%= captchaURL %>" />
 			</c:if>
-	 	 </aui:col> 
-	</aui:fieldset> 
+		</aui:col>
+	</aui:fieldset>
 
 	<aui:button-row>
 		<aui:button type="submit" />
 	</aui:button-row>
 </aui:form>
+<script type="text/javascript">
+	
+	$( '#<portlet:namespace/>myselect').keyup(function() {
+		  alert( "Handler for .keyup() called." );
+		var myselect= A.one("#<portlet:namespace/>myselect");
+		  alert( "myselect :"+myselect);
+		});
+	<%-- var Url ="<%=addURL%>";
+    $.ajax({
+           url : Url,
+           type : 'GET',
+  		  // datatype:'json',
+           data : {
+  <portlet:namespace/>data1:requestId,
+           },
+           async : true,
+           success : function(requestid) {
+        	   //$("#"+requestid).hide();      
+ }
+}); --%>
+</script>
 
 <liferay-util:include page="/html/portlet/login/navigation.jsp" />
+
