@@ -5,6 +5,6 @@
     <custom-jsp-dir>/WEB-INF/custom_jsps</custom-jsp-dir>
     <struts-action>
         <struts-action-path>/login/create_account</struts-action-path>
-        <struts-action-impl>com.bizen.project.CreateAccountImpl</struts-action-impl>
+        <struts-action-impl>com.bizen.action.CreateAccountAction</struts-action-impl>
     </struts-action>
 </hook>
