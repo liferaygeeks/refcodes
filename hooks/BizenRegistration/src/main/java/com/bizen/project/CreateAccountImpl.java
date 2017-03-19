@@ -148,10 +148,9 @@ public class CreateAccountImpl implements StrutsPortletAction {
 		
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 	            WebKeys.THEME_DISPLAY);
-	    long userId = UserLocalServiceUtil.getUserIdByEmailAddress(themeDisplay.getCompanyId(), ParamUtil.getString(
-	            actionRequest, "emailAddress"));
+		User user = UserLocalServiceUtil.getUserByEmailAddress(themeDisplay.getCompanyId(), emailAddress);
 		
-		BusinessUser businessUser = BusinessUserLocalServiceUtil.createBusinessUser(userId);
+		BusinessUser businessUser = BusinessUserLocalServiceUtil.createBusinessUser(user.getUserId());
 		
 		businessUser.setFirstName(firstName);
 		businessUser.setLastName(lastName);
@@ -160,8 +159,9 @@ public class CreateAccountImpl implements StrutsPortletAction {
 		businessUser.setCategoryId(0);
 		businessUser.setPhoneNumber(phoneNumber);
 		businessUser.setCreatedDate(new Date());
-		businessUser.setCreatedBy(userId);
+		businessUser.setCreatedBy(user.getUserId());
 		BusinessUserLocalServiceUtil.addBusinessUser(businessUser);
+		System.out.println("after adding in businessuser table");
 		
 		
 	}
