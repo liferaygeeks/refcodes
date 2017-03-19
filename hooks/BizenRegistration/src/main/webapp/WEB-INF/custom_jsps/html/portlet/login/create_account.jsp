@@ -124,6 +124,9 @@ birthdayCalendar.set(Calendar.YEAR, 1970);
 		<aui:col width="<%= 50 %>">
 			<%@ include file="/html/portlet/login/create_account_user_name.jspf" %>
 
+			<c:if test="<%= !PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.USERS_SCREEN_NAME_ALWAYS_AUTOGENERATE) %>">
+				<aui:input model="<%= User.class %>" name="screenName" />
+			</c:if>
 
 			<aui:input autoFocus="<%= true %>" model="<%= User.class %>" name="emailAddress">
 				<c:if test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.USERS_EMAIL_ADDRESS_REQUIRED) %>">
@@ -135,9 +138,9 @@ birthdayCalendar.set(Calendar.YEAR, 1970);
 					<aui:validator name="required" />
 			</aui:input>
 		</aui:col>
-		
 
 		<aui:col width="<%= 50 %>">
+			
 			<aui:select name="category" id="category" label="Category">
 			    <aui:option>Select Category</aui:option>
 			       	<%-- <aui:option value="${shiftTypeObj.shiftTypeId}_${shiftTypeObj.shiftTypeValue}" label="${shiftTypeObj.shiftTypeValue}" /> --%>
@@ -154,7 +157,7 @@ birthdayCalendar.set(Calendar.YEAR, 1970);
 			<aui:input name="phoneNumber" label="Phone Number" type="text">
 				<aui:validator name="required" />
 			</aui:input>
-
+		
 			<c:if test="<%= PropsValues.LOGIN_CREATE_ACCOUNT_ALLOW_CUSTOM_PASSWORD %>">
 				<aui:input label="password" name="password1" size="30" type="password" value="" />
 
@@ -163,6 +166,24 @@ birthdayCalendar.set(Calendar.YEAR, 1970);
 						'#<portlet:namespace />password1'
 					</aui:validator>
 				</aui:input>
+			</c:if>
+
+			<c:choose>
+				<c:when test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.FIELD_ENABLE_COM_LIFERAY_PORTAL_MODEL_CONTACT_BIRTHDAY) %>">
+					<aui:input name="birthday" value="<%= birthdayCalendar %>" />
+				</c:when>
+				<c:otherwise>
+					<aui:input name="birthdayMonth" type="hidden" value="<%= Calendar.JANUARY %>" />
+					<aui:input name="birthdayDay" type="hidden" value="1" />
+					<aui:input name="birthdayYear" type="hidden" value="1970" />
+				</c:otherwise>
+			</c:choose>
+
+			<c:if test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.FIELD_ENABLE_COM_LIFERAY_PORTAL_MODEL_CONTACT_MALE) %>">
+				<aui:select label="gender" name="male">
+					<aui:option label="male" value="1" />
+					<aui:option label="female" selected="<%= !male %>" value="0" />
+				</aui:select>
 			</c:if>
 
 			<c:if test="<%= PropsValues.CAPTCHA_CHECK_PORTAL_CREATE_ACCOUNT %>">
