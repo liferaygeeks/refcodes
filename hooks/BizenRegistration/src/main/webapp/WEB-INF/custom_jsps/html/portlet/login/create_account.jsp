@@ -141,13 +141,13 @@ birthdayCalendar.set(Calendar.YEAR, 1970);
 
 		<aui:col width="<%= 50 %>">
 			
-			<aui:select name="category" id="category" label="Category">
-			    <aui:option>Select Category</aui:option>
-			       	<%-- <aui:option value="${shiftTypeObj.shiftTypeId}_${shiftTypeObj.shiftTypeValue}" label="${shiftTypeObj.shiftTypeValue}" /> --%>
-			       	<aui:option value="category1">category1</aui:option>
-			       	<aui:option value="category2">category2</aui:option>
-			       	<aui:option value="category3">category3</aui:option>
-			       	<aui:option value="category4">category4</aui:option>
+			  <aui:select  label="Business Type" name="category"  required="true"  >
+				<option selected disabled hidden value=''>Select Business Type</option>
+				<c:forEach var="category" items="${categories}">
+						<aui:option label="${category.value}" value="${category.key}" />
+  
+				</c:forEach>
+					
 			</aui:select>
 			
 			<aui:input name="companyId" label="Company Id" type="text">
