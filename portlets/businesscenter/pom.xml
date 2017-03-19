@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+        <groupId>com.refcodes.portlets</groupId>
+	      <artifactId>portlets</artifactId>
+	      <version>1.0</version>
+	    <relativePath>../pom.xml</relativePath>
+    </parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.refcodes.portlets.businesscenter</groupId>
+	<artifactId>businesscenter</artifactId>
+	<packaging>pom</packaging>
+	<name>businesscenter</name>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.liferay.maven.plugins</groupId>
+				<artifactId>liferay-maven-plugin</artifactId>
+				<version>${liferay.maven.plugin.version}</version>
+				<configuration>
+					<liferayVersion>${liferay.version}</liferayVersion>
+					<pluginName>businesscenter-portlet</pluginName>
+					<pluginType>portlet</pluginType>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<modules>
+		<module>businesscenter-portlet</module>
+		<module>businesscenter-portlet-service</module>
+	</modules>
+</project>

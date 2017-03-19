@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.refcodes.portlets.businesscenter.model.BusinessUser">
+		<field name="uuid" type="String" />
+		<field name="businessUserId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="firstName" type="String" />
+		<field name="lastName" type="String" />
+		<field name="email" type="String" />
+		<field name="ownerShip" type="String" />
+		<field name="categoryId" type="long" />
+		<field name="phoneNumber" type="String" />
+		<field name="createdDate" type="Date" />
+		<field name="createdBy" type="long" />
+		<field name="updatedDate" type="Date" />
+		<field name="updatedBy" type="long" />
+	</model>
+</model-hints>

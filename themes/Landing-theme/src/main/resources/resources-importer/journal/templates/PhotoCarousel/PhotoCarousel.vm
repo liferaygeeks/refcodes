@@ -26,7 +26,7 @@
 
 			 		#if ($item.url-location.data != "")
 			 			<hr/>
-						<a href="$item.url-location.data" class="btn btn-large btn-primary green scroll-animate" title="$item.data">SEE MORE</a>
+						<a href="javascript:redirectToCreateAccount();" class="btn btn-large btn-primary green scroll-animate" title="$item.data">SEE MORE</a>
 					#end
 	  			</span>
 	  		</span>
