@@ -1,4 +1,4 @@
-package com.bizen.project;
+package com.bizen.action;
 
 import java.util.Date;
 import java.util.List;
@@ -29,7 +29,7 @@ import com.liferay.portlet.asset.service.AssetVocabularyLocalServiceUtil;
 import com.refcodes.portlets.businesscenter.model.BusinessUser;
 import com.refcodes.portlets.businesscenter.service.BusinessUserLocalServiceUtil;
 
-public class CreateAccountImpl extends BaseStrutsPortletAction {
+public class CreateAccountAction extends BaseStrutsPortletAction {
 	
 	
 
