@@ -1,33 +1,31 @@
 package com.bizen.project;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
-import javax.portlet.ResourceRequest;
-import javax.portlet.ResourceResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import com.liferay.counter.service.CounterLocalServiceUtil;
-import com.liferay.portal.kernel.servlet.SessionMessages;
+import com.bizen.constants.RegistrationConstant;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.struts.BaseStrutsPortletAction;
 import com.liferay.portal.kernel.struts.StrutsPortletAction;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.kernel.workflow.WorkflowConstants;
-import com.liferay.portal.model.Company;
-import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.service.UserServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.asset.model.AssetCategory;
+import com.liferay.portlet.asset.model.AssetVocabulary;
+import com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil;
+import com.liferay.portlet.asset.service.AssetVocabularyLocalServiceUtil;
 import com.refcodes.portlets.businesscenter.model.BusinessUser;
 import com.refcodes.portlets.businesscenter.service.BusinessUserLocalServiceUtil;
 
@@ -40,7 +38,7 @@ public class CreateAccountImpl extends BaseStrutsPortletAction {
 	@Override
 	public void processAction(StrutsPortletAction originalStrutsPortletAction,
 			PortletConfig portletConfig, ActionRequest actionRequest,
-			ActionResponse actionResponse) 
+			ActionResponse actionResponse) throws Exception 
 	{
 		// TODO Auto-generated method stub
 		
@@ -71,9 +69,31 @@ public class CreateAccountImpl extends BaseStrutsPortletAction {
 		
 		
 	}
-
+	@Override
+	public String render(StrutsPortletAction originalStrutsPortletAction,PortletConfig portletConfig,
+			RenderRequest renderRequest, RenderResponse renderResponse) throws Exception
+	{
+		ThemeDisplay themeDisplay = (ThemeDisplay) renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
+		
+		renderRequest.setAttribute(RegistrationConstant.CATEGORIES, getCategoriesByVocabulary(PropsUtil.get(RegistrationConstant.VOCABULARY_NAME),themeDisplay.getScopeGroupId()));
+		return  originalStrutsPortletAction.render(null, portletConfig, renderRequest, renderResponse);
 	
+	}
 	
+	public Map<String,String> getCategoriesByVocabulary(String vocabularyName,long groupId) throws PortalException, SystemException{
+		Map<String,String> categories = new TreeMap<String, String>();
+		AssetVocabulary vocabulary = AssetVocabularyLocalServiceUtil.getGroupVocabulary(groupId, vocabularyName);
+		List<AssetCategory> categoryList = AssetCategoryLocalServiceUtil.getVocabularyCategories(vocabulary.getVocabularyId(), -1, -1, null); 
+		
+		System.out.println("length"+categoryList.size());
+		for(AssetCategory assesCategory:categoryList){
+			
+			categories.put(assesCategory.getCategoryId()+"", assesCategory.getName());
+			
+		}
+		return categories;
+		
+	}
 	
 
 }
