@@ -156,6 +156,8 @@ birthdayCalendar.set(Calendar.YEAR, 1970);
 			
 			<aui:input name="phoneNumber" label="Phone Number" type="text">
 				<aui:validator name="required" />
+			  	<aui:validator name="digits"/>
+			  	<aui:validator name="maxLength">10</aui:validator>
 			</aui:input>
 		
 			<c:if test="<%= PropsValues.LOGIN_CREATE_ACCOUNT_ALLOW_CUSTOM_PASSWORD %>">
