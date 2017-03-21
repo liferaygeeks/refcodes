@@ -8,4 +8,9 @@
         <struts-action-path>/login/create_account</struts-action-path>
         <struts-action-impl>com.bizen.project.CreateAccountImpl</struts-action-impl>
     </struts-action>
+    <struts-action>
+        <struts-action-path>/asset_category_admin/edit_category</struts-action-path>
+        <struts-action-impl>com.bizen.project.SiteCreationAction</struts-action-impl>
+    </struts-action>
+    
 </hook>
