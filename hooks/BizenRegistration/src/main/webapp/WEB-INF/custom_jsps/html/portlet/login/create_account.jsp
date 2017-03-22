@@ -134,14 +134,7 @@ birthdayCalendar.set(Calendar.YEAR, 1970);
 				</c:if>
 			</aui:input>
 			
-			<aui:input name="ownerShip" label="Owner Ship" type="text">
-					<aui:validator name="required" />
-			</aui:input>
-		</aui:col>
-
-		<aui:col width="<%= 50 %>">
-			
-			  <aui:select  label="Business Type" name="category"  required="true"  >
+			<aui:select  label="Business Type" name="category"  required="true"  >
 				<option selected disabled hidden value=''>Select Business Type</option>
 				<c:forEach var="category" items="${categories}">
 						<aui:option label="${category.value}" value="${category.key}" />
@@ -149,13 +142,23 @@ birthdayCalendar.set(Calendar.YEAR, 1970);
 				</c:forEach>
 					
 			</aui:select>
-			
-			<aui:input name="companyId" label="Company Id" type="text">
-				<aui:validator name="required" />
+		</aui:col>
+
+		<aui:col width="<%= 50 %>">
+				<aui:input name="businessname" label="Business Name" type="text" title="This should be unique" >
+					<aui:validator name="required" />
 			</aui:input>
+			  
 			
-			<aui:input name="phoneNumber" label="Phone Number" type="text">
+			<!-- <aui:input name="companyId" label="Company Id" type="text">
 				<aui:validator name="required" />
+			</aui:input> -->
+			
+			<aui:input name="mobilenumber" label="Mobile Number" type="text">
+				<aui:validator name="required"  />
+				<aui:validator name="maxLength" errorMessage="Please enter valid 12 digit mobile number"  >12</aui:validator>
+				<aui:validator name="minLength" errorMessage="Please enter valid mobile muber" >10</aui:validator>
+				<aui:validator name="number"></aui:validator>
 			</aui:input>
 		
 			<c:if test="<%= PropsValues.LOGIN_CREATE_ACCOUNT_ALLOW_CUSTOM_PASSWORD %>">

@@ -24,7 +24,8 @@
 					<appServerLibGlobalDir>${liferay.app.server.lib.global.dir}</appServerLibGlobalDir>
 					<appServerPortalDir>${liferay.app.server.portal.dir}</appServerPortalDir>
 					<liferayVersion>${liferay.version}</liferayVersion>
-					<pluginType>hook</pluginType>
+					<pluginName>BizenRegistration</pluginName>
+					<pluginType>hook</pluginType> 
 				</configuration> 
 		
 			</plugin>

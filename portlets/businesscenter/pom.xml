@@ -19,11 +19,15 @@
 				<artifactId>liferay-maven-plugin</artifactId>
 				<version>${liferay.maven.plugin.version}</version>
 				<configuration>
+					<autoDeployDir>${liferay.auto.deploy.dir}</autoDeployDir>
+					<appServerDeployDir>${liferay.app.server.deploy.dir}</appServerDeployDir>
+					<appServerLibGlobalDir>${liferay.app.server.lib.global.dir}</appServerLibGlobalDir>
+					<appServerPortalDir>${liferay.app.server.portal.dir}</appServerPortalDir>
 					<liferayVersion>${liferay.version}</liferayVersion>
 					<pluginName>businesscenter-portlet</pluginName>
-					<pluginType>portlet</pluginType>
+					<pluginType>portlet</pluginType> 
 				</configuration>
-			</plugin>
+				</plugin>
 		</plugins>
 	</build>
 	<modules>

@@ -10,6 +10,10 @@
 		<properties>
 		<liferay.maven.plugin.version>6.2.5</liferay.maven.plugin.version>
 		<liferay.version>6.2.1</liferay.version>
+		<liferay.auto.deploy.dir>C:\liferaygeeks\liferay-portal-6.2-ee-sp10\deploy\</liferay.auto.deploy.dir>
+		<liferay.app.server.deploy.dir>C:\liferaygeeks\liferay-portal-6.2-ee-sp10\deploy\</liferay.app.server.deploy.dir>
+		<liferay.app.server.lib.global.dir>C:\liferaygeeks\liferay-portal-6.2-ee-sp10\tomcat-7.0.42\lib</liferay.app.server.lib.global.dir>
+		<liferay.app.server.portal.dir>C:\liferaygeeks\liferay-portal-6.2-ee-sp10\tomcat-7.0.42\webapps\ROOT\WEB-INF\lib</liferay.app.server.portal.dir>
 		</properties>
     <build>
 		<plugins>
@@ -17,15 +21,6 @@
 				<groupId>com.liferay.maven.plugins</groupId>
 				<artifactId>liferay-maven-plugin</artifactId>
 				<version>${liferay.maven.plugin.version}</version>
-				<!-- <configuration>
-					<autoDeployDir>${liferay.auto.deploy.dir}</autoDeployDir>
-					<appServerDeployDir>${liferay.app.server.deploy.dir}</appServerDeployDir>
-					<appServerLibGlobalDir>${liferay.app.server.lib.global.dir}</appServerLibGlobalDir>
-					<appServerPortalDir>${liferay.app.server.portal.dir}</appServerPortalDir>
-					<liferayVersion>${liferay.version}</liferayVersion>
-					<pluginName>protoype-portlet</pluginName>
-					<pluginType>portlet</pluginType>
-				</configuration> -->
 			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -43,7 +38,15 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
+			 <plugin>
+		            <groupId>org.apache.maven.plugins</groupId> 
+		            <artifactId>maven-war-plugin</artifactId>
+		            <configuration>
+		                <outputDirectory>${liferay.app.server.deploy.dir}</outputDirectory>
+		            </configuration>
+    	    </plugin> 
 		</plugins>
+		
 	</build>
 	 <modules>
        			<module>services</module>
