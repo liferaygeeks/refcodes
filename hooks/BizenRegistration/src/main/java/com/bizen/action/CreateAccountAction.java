@@ -14,8 +14,11 @@ import javax.portlet.RenderResponse;
 import com.bizen.constants.RegistrationConstant;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.struts.BaseStrutsPortletAction;
 import com.liferay.portal.kernel.struts.StrutsPortletAction;
+import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -33,21 +36,21 @@ public class CreateAccountAction extends BaseStrutsPortletAction {
 	
 	
 
-	
+private	Log logger = LogFactoryUtil.getLog(CreateAccountAction.class.getName());
 
 	@Override
 	public void processAction(StrutsPortletAction originalStrutsPortletAction,
 			PortletConfig portletConfig, ActionRequest actionRequest,
 			ActionResponse actionResponse) throws Exception 
 	{
-		// TODO Auto-generated method stub
-		
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+	if(cmd.equalsIgnoreCase(Constants.ADD)){
 		String firstName = ParamUtil.getString(actionRequest, "firstName");
 		String lastName = ParamUtil.getString(actionRequest, "lastName");
 		String emailAddress = ParamUtil.getString(actionRequest, "emailAddress");
-		String ownerShip = ParamUtil.getString(actionRequest, "ownerShip");
-		String phoneNumber = ParamUtil.getString(actionRequest, "phoneNumber");
-		
+		String ownerShip = ParamUtil.getString(actionRequest, "businessname");
+		String phoneNumber = ParamUtil.getString(actionRequest, "mobilenumber");
+		String categoryId = ParamUtil.getString(actionRequest, "category");
 		originalStrutsPortletAction.processAction(originalStrutsPortletAction, portletConfig, actionRequest, actionResponse);
 		
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
@@ -65,7 +68,9 @@ public class CreateAccountAction extends BaseStrutsPortletAction {
 		businessUser.setCreatedDate(new Date());
 		businessUser.setCreatedBy(user.getUserId());
 		BusinessUserLocalServiceUtil.addBusinessUser(businessUser);
-		System.out.println("after adding in businessuser table");
+		logger.info("after adding in businessuser table");
+	}
+		
 		
 		
 	}
@@ -80,16 +85,25 @@ public class CreateAccountAction extends BaseStrutsPortletAction {
 	
 	}
 	
-	public Map<String,String> getCategoriesByVocabulary(String vocabularyName,long groupId) throws PortalException, SystemException{
+	public Map<String,String> getCategoriesByVocabulary(String vocabularyName,long groupId) {
 		Map<String,String> categories = new TreeMap<String, String>();
-		AssetVocabulary vocabulary = AssetVocabularyLocalServiceUtil.getGroupVocabulary(groupId, vocabularyName);
+		
+		try {
+			AssetVocabulary 	vocabulary = AssetVocabularyLocalServiceUtil.getGroupVocabulary(groupId, vocabularyName);
+		
 		List<AssetCategory> categoryList = AssetCategoryLocalServiceUtil.getVocabularyCategories(vocabulary.getVocabularyId(), -1, -1, null); 
 		
-		System.out.println("length"+categoryList.size());
-		for(AssetCategory assesCategory:categoryList){
+			for(AssetCategory assesCategory:categoryList){
 			
 			categories.put(assesCategory.getCategoryId()+"", assesCategory.getName());
 			
+		}
+		} catch (PortalException e) {
+		
+			logger.error("OOps Seems like there is no Vocabulary created with name "+vocabularyName+" ERROR MESSAGE"+e.getMessage());
+		} catch (SystemException e) {
+			
+			logger.error("OOps Seems like there is no Vocabulary created with name "+vocabularyName+" ERROR MESSAGE"+e.getMessage());
 		}
 		return categories;
 		
