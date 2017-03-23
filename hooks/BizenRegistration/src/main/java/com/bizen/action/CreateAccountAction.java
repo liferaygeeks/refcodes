@@ -12,6 +12,7 @@ import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
 import com.bizen.constants.RegistrationConstant;
+import com.bizen.util.BizenRegistarionUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -36,7 +37,7 @@ public class CreateAccountAction extends BaseStrutsPortletAction {
 	
 	
 
-private	Log logger = LogFactoryUtil.getLog(CreateAccountAction.class.getName());
+private static 	Log logger = LogFactoryUtil.getLog(CreateAccountAction.class.getName());
 
 	@Override
 	public void processAction(StrutsPortletAction originalStrutsPortletAction,
@@ -80,34 +81,12 @@ private	Log logger = LogFactoryUtil.getLog(CreateAccountAction.class.getName());
 	{
 		ThemeDisplay themeDisplay = (ThemeDisplay) renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
 		
-		renderRequest.setAttribute(RegistrationConstant.CATEGORIES, getCategoriesByVocabulary(PropsUtil.get(RegistrationConstant.VOCABULARY_NAME),themeDisplay.getScopeGroupId()));
+		renderRequest.setAttribute(RegistrationConstant.CATEGORIES, BizenRegistarionUtil.getCategoriesByVocabulary(PropsUtil.get(RegistrationConstant.VOCABULARY_NAME),themeDisplay.getScopeGroupId()));
 		return  originalStrutsPortletAction.render(null, portletConfig, renderRequest, renderResponse);
 	
 	}
 	
-	public Map<String,String> getCategoriesByVocabulary(String vocabularyName,long groupId) {
-		Map<String,String> categories = new TreeMap<String, String>();
-		
-		try {
-			AssetVocabulary 	vocabulary = AssetVocabularyLocalServiceUtil.getGroupVocabulary(groupId, vocabularyName);
-		
-		List<AssetCategory> categoryList = AssetCategoryLocalServiceUtil.getVocabularyCategories(vocabulary.getVocabularyId(), -1, -1, null); 
-		
-			for(AssetCategory assesCategory:categoryList){
-			
-			categories.put(assesCategory.getCategoryId()+"", assesCategory.getName());
-			
-		}
-		} catch (PortalException e) {
-		
-			logger.error("OOps Seems like there is no Vocabulary created with name "+vocabularyName+" ERROR MESSAGE"+e.getMessage());
-		} catch (SystemException e) {
-			
-			logger.error("OOps Seems like there is no Vocabulary created with name "+vocabularyName+" ERROR MESSAGE"+e.getMessage());
-		}
-		return categories;
-		
-	}
+	
 	
 
 }
