@@ -84,13 +84,18 @@ public class SiteCreationAction extends BaseStrutsPortletAction {
 				}else if(vobularyname.equalsIgnoreCase(assetVocabulary.getName()) && cmd.equals(Constants.UPDATE)){
 					
 				_log.info("inside update method");	
+				
+				
+				try{
 				editCategory=AssetCategoryLocalServiceUtil.getAssetCategory(editCategoryId);
 				_log.info("inside update editCategory"+editCategory);
 				siteUpdate=GroupLocalServiceUtil.getGroup(themeDisplay.getCompanyId(), editCategory.getName());
 					GroupLocalServiceUtil.updateGroup(siteUpdate.getGroupId(), 0L, siteName, siteName,
 							GroupConstants.TYPE_SITE_PRIVATE, true, GroupConstants.DEFAULT_MEMBERSHIP_RESTRICTION, frindlyUrl+siteName, true, serviceContext);
 					_log.info("Category Edited !!!!!!!!!!");
+				}finally{
 					originalStrutsPortletAction.processAction(originalStrutsPortletAction, portletConfig, actionRequest, actionResponse);
+				}
 				}else{
 					
 					originalStrutsPortletAction.processAction(originalStrutsPortletAction, portletConfig, actionRequest, actionResponse);
